@@ -36,11 +36,7 @@ class ConverterKtTest{
                 RichTextElement(
                     type = "text",
                     text = "I am a basic rich text block!",
-                    style = TextStyle(
-                        bold = true,
-                        italic = true,
-                        strike = true
-                    )
+                    style = TextStyle(bold = true, italic = true, strike = true)
                 ),
                 RichTextElement(
                     type = "text",
@@ -50,7 +46,7 @@ class ConverterKtTest{
             )
         )
         // when
-        val actual = document.firstChild?.toRichTextSection()
+        val actual = getRichTextSection(document, TextStyle(), mutableListOf())
         // then
         assertEquals(exception, actual)
     }

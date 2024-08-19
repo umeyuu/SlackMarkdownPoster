@@ -29,7 +29,7 @@ fun main() {
     // ASTをSlackのブロックに変換
     val slackBlocks = document.toSlackBlocks()
 
-    // 結果を改行区切りで出力
+//     結果を改行区切りで出力
     slackBlocks.blocks.forEach { block ->
         println(block)
     }
@@ -39,4 +39,17 @@ fun main() {
 // Markdownファイルを読み込んでテキストを返す関数
 fun readMarkdownFile(filePath: String): String {
     return File(filePath).readText()
+}
+
+// ASTを再帰的に出力する関数
+fun printAst(node: Node, indent: String = "") {
+    val nodeName = node::class.simpleName
+    val text = node.chars.unescape()
+    println("$indent$nodeName: \"$text\"")
+
+    var child = node.firstChild
+    while (child != null) {
+        printAst(child, "$indent  ")
+        child = child.next
+    }
 }

@@ -43,7 +43,23 @@ data class RichTextElement(
 
 // テキストのスタイルを表すデータクラス
 data class TextStyle(
-    val bold: Boolean = false,
-    val italic: Boolean = false,
-    val strike: Boolean = false,
-)
+    var bold: Boolean = false,
+    var italic: Boolean = false,
+    var strike: Boolean = false,
+){
+    fun setItalic(){
+        italic = true
+    }
+    fun setBold(){
+        bold = true
+    }
+    fun setStrike(){
+        strike = true
+    }
+
+    fun reset(){
+        bold = false
+        italic = false
+        strike = false
+    }
+}
