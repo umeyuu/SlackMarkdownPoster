@@ -26,6 +26,7 @@ fun main() {
     val parser: Parser = Parser.builder(options).build()
     val document: Node = parser.parse(markdown)
 
+
     // ASTをSlackのブロックに変換
     val slackBlocks = document.toSlackBlocks()
 

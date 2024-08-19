@@ -50,4 +50,162 @@ class ConverterKtTest{
         // then
         assertEquals(exception, actual)
     }
+
+    @Test
+    fun `1階層のBulletListの処理`(){
+        // given
+        val markdown = """
+            |- item1
+            |- item2
+            |""".trimMargin()
+        val document: Node = parser.parse(markdown)
+        val exception = listOf(
+            RichTextList(
+                style = "bullet",
+                elements = listOf(
+                    RichTextSection(
+                        elements = listOf(
+                            RichTextElement(
+                                type = "text",
+                                text = "item1",
+                                style = TextStyle()
+                            )
+                        )
+                    ),
+                    RichTextSection(
+                        elements = listOf(
+                            RichTextElement(
+                                type = "text",
+                                text = "item2",
+                                style = TextStyle()
+                            )
+                        )
+                    )
+                ),
+                indent = 0,
+                offset = null,
+                border = null
+            )
+        )
+        // when
+        val actual = convertRichTextLists(document)
+        // then
+        assertEquals(RichTextBlock(elements = exception), actual)
+    }
+
+    @Test
+    fun `2階層のBulletListの処理`(){
+        // given
+        val markdown = """
+            |- item1
+            |  - item1-1
+            |  - item1-2
+            |    - item1-2-1
+            |- item2
+            |  - item2-1
+            |""".trimMargin()
+
+        val document: Node = parser.parse(markdown)
+        val exception = listOf(
+            RichTextList(
+                style = "bullet",
+                elements = listOf(
+                    RichTextSection(
+                        elements = listOf(
+                            RichTextElement(
+                                type = "text",
+                                text = "item1",
+                                style = TextStyle()
+                            )
+                        )
+                    )
+                ),
+                indent = 0,
+                offset = null,
+                border = null
+            ),RichTextList(
+                style = "bullet",
+                elements = listOf(
+                    RichTextSection(
+                        elements = listOf(
+                            RichTextElement(
+                                type = "text",
+                                text = "item1-1",
+                                style = TextStyle()
+                            )
+                        )
+                    ),
+                    RichTextSection(
+                        elements = listOf(
+                            RichTextElement(
+                                type = "text",
+                                text = "item1-2",
+                                style = TextStyle()
+                            )
+                        )
+                    )
+                ),
+                indent = 1,
+                offset = null,
+                border = null
+            ),
+            RichTextList(
+                style = "bullet",
+                elements = listOf(
+                    RichTextSection(
+                        elements = listOf(
+                            RichTextElement(
+                                type = "text",
+                                text = "item1-2-1",
+                                style = TextStyle()
+                            )
+                        )
+                    )
+                ),
+                indent = 2,
+                offset = null,
+                border = null
+            ),
+            RichTextList(
+                style = "bullet",
+                elements = listOf(
+                    RichTextSection(
+                        elements = listOf(
+                            RichTextElement(
+                                type = "text",
+                                text = "item2",
+                                style = TextStyle()
+                            )
+                        )
+                    )
+                ),
+                indent = 0,
+                offset = null,
+                border = null
+            ),
+            RichTextList(
+                style = "bullet",
+                elements = listOf(
+                    RichTextSection(
+                        elements = listOf(
+                            RichTextElement(
+                                type = "text",
+                                text = "item2-1",
+                                style = TextStyle()
+                            )
+                        )
+                    )
+                ),
+                indent = 1,
+                offset = null,
+                border = null
+            )
+        )
+
+        // when
+        val actual = convertRichTextLists(document)
+        // then
+        assertEquals(RichTextBlock(elements = exception), actual)
+    }
+
 }

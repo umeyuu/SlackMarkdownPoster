@@ -25,13 +25,23 @@ data class Header(
 // SlackのRich Text Block全体を表すデータクラス
 data class RichTextBlock(
     val type: String = "rich_text",
-    val elements: List<RichTextElement> // 要素のリスト
-)
+    val elements: List<Block> // 要素のリスト
+): Block()
 
 // Rich Textのセクションを表すデータクラス
 data class RichTextSection(
     val type: String = "rich_text_section",
     val elements: List<RichTextElement> // 要素のリスト
+): Block()
+
+
+data class RichTextList(
+    val type: String = "rich_text_list",
+    val style: String, // "ordered" or "bullet"
+    val elements: List<RichTextSection>,
+    val indent: Int?, // インデントするピクセル数
+    val offset: Int?, // オフセットするピクセル数
+    val border: Int?, // 境界線の太さ
 ): Block()
 
 // テキスト要素を表すデータクラス
