@@ -41,8 +41,8 @@ fun getRichTextSection(node: Node, style: TextStyle, output: MutableList<RichTex
 }
 
 
-fun convertRichTextLists(document: Node): RichTextBlock {
-    val (rootList, nestedLists) = processBulletList(document, 0, mutableListOf(), mutableListOf())
+fun convertRichTextLists(document: Node, indent: Int): RichTextBlock {
+    val (rootList, nestedLists) = processBulletList(document, indent, mutableListOf(), mutableListOf())
     nestedLists.add(rootList)
     return RichTextBlock(
         elements = mergeAndCleanRichTextLists(nestedLists)
@@ -131,7 +131,7 @@ fun Node.toSlackBlocks(): SlackBlocks {
         when (node) {
             is Heading -> node.toHeaderBlock()
             is Paragraph -> getRichTextSection(node, TextStyle(), mutableListOf())
-            is BulletList -> convertRichTextLists(node)
+            is BulletList -> convertRichTextLists(node, 1)
             else -> null
         }
     }

@@ -88,7 +88,7 @@ class ConverterKtTest{
             )
         )
         // when
-        val actual = convertRichTextLists(document)
+        val actual = convertRichTextLists(document, 0)
         // then
         assertEquals(RichTextBlock(elements = exception), actual)
     }
@@ -203,7 +203,7 @@ class ConverterKtTest{
         )
 
         // when
-        val actual = convertRichTextLists(document)
+        val actual = convertRichTextLists(document, 0)
         // then
         assertEquals(RichTextBlock(elements = exception), actual)
     }
