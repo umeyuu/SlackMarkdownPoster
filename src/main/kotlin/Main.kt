@@ -26,15 +26,20 @@ fun main() {
     val parser: Parser = Parser.builder(options).build()
     val document: Node = parser.parse(markdown)
 
-
     // ASTをSlackのブロックに変換
-    val slackBlocks = document.toSlackBlocks()
+    val converter = SlackBlockConverter()
+    val slackBlocks = converter.convert(document)
+
+    val slackApiClient = SlackApiClient()
+    val response = slackApiClient.postToSlack(slackBlocks)
 
 //     結果を改行区切りで出力
-    slackBlocks.blocks.forEach { block ->
-        println(block)
-    }
+//    slackBlocks.blocks.forEach { block ->
+//        println(block)
+//    }
 }
+
+
 
 
 // Markdownファイルを読み込んでテキストを返す関数

@@ -1,11 +1,8 @@
-# H1 Heading
+# sample File
 
-This is a sample note. It is a markdown file. It can contain text, images, links, and more.
+This is a sample file.
 
-## H2 Heading
+- List item 1
+- List item 2
+- List item 3
 
-This is a subheading. It can contain more detailed information about the main heading.
-
-### H3 Heading
-
-This is a subheading of the subheading. It can contain even more detailed information.

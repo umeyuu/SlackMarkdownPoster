@@ -10,7 +10,6 @@ import org.example.*
  */
 fun Heading.toHeaderBlock() = Header(
     text = PlainText(
-        type = "plain_text",
         text = this.text.toString()
     ),
     block_id = this.anchorRefId
@@ -19,10 +18,9 @@ fun Heading.toHeaderBlock() = Header(
 /**
  * 普通のテキストをPlainTextに変換する拡張関数
  */
-fun Paragraph.toPlainText() = PlainText(
-    type = "plain_text",
-    text = this.chars.toString()
-)
+//fun Paragraph.toPlainText() = PlainText(
+//    text = this.chars.toString()
+//)
 
 /**
  * styleを持つテキストであるRichTextBlockを生成する拡張関数

@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79906c5a-37a6-4d74-a276-7c095a6b8246" name="変更" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sample-file/sample.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/converter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/slackBlock.kt" afterDir="false" />
+    <list default="true" id="79906c5a-37a6-4d74-a276-7c095a6b8246" name="変更" comment="リファクタリング">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample-file/sample.md" beforeDir="false" afterPath="$PROJECT_DIR$/sample-file/sample.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SlackApiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SlackApiClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/extention/converter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/extention/converter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/slackBlock.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/slackBlock.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +27,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -43,8 +47,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Class" />
         <option value="Kotlin File" />
+        <option value="JUnit5 Test Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -62,44 +67,144 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.ConverterKtTest.1階層のBulletListの処理.executor": "Run",
+    "Gradle.ConverterKtTest.1階層のOrderdList.executor": "Run",
+    "Gradle.ConverterKtTest.2階層のBulletListの処理.executor": "Run",
+    "Gradle.ConverterKtTest.BulletListとOrderedListの混在.executor": "Run",
+    "Gradle.ConverterKtTest.BulletListの処理.executor": "Run",
+    "Gradle.ConverterKtTest.Linkの処理.executor": "Run",
+    "Gradle.ConverterKtTest.Paragraphの処理.executor": "Run",
+    "Gradle.ConverterKtTest.executor": "Run",
     "Gradle.Markdown_Converter のビルド.executor": "Run",
     "Kotlin.App.executor": "Run",
     "Kotlin.BasicSample.executor": "Debug",
     "Kotlin.ConverterKt.executor": "Run",
-    "Kotlin.MainKt.executor": "Run",
+    "Kotlin.MainKt.executor": "Debug",
     "Kotlin.SampleKt.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   },
   "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/新規スクラッチファイル": [
+      "JSON"
+    ],
     "kotlin-gradle-user-dirs": [
       "/Users/umedayuusuke/.gradle"
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/kotlin/extention" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager" selected="Kotlin.MainKt">
-    <configuration name="App" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.App" />
-      <module name="Markdown_Converter.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="ConverterKtTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ConverterKtTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
-    <configuration name="BasicSample" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.BasicSample" />
-      <module name="Markdown_Converter.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="ConverterKtTest.1階層のBulletListの処理" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ConverterKtTest.1階層のBulletListの処理&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
-    <configuration name="ConverterKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.ConverterKt" />
-      <module name="Markdown_Converter.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="ConverterKtTest.Linkの処理" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ConverterKtTest.Linkの処理&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ConverterKtTest.Paragraphの処理" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ConverterKtTest.Paragraphの処理&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.MainKt" />
@@ -108,20 +213,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SampleKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="SampleKt" />
-      <module name="Markdown_Converter.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.MainKt" />
-        <item itemvalue="Kotlin.ConverterKt" />
-        <item itemvalue="Kotlin.SampleKt" />
-        <item itemvalue="Kotlin.App" />
-        <item itemvalue="Kotlin.BasicSample" />
+        <item itemvalue="Gradle.ConverterKtTest.1階層のBulletListの処理" />
+        <item itemvalue="Gradle.ConverterKtTest.Paragraphの処理" />
+        <item itemvalue="Gradle.ConverterKtTest.Linkの処理" />
+        <item itemvalue="Gradle.ConverterKtTest" />
       </list>
     </recent_temporary>
   </component>
@@ -134,12 +232,103 @@
       <option name="presentableId" value="Default" />
       <updated>1723983032927</updated>
     </task>
+    <task id="LOCAL-00001" summary="Nodeをslack blockに変換する">
+      <option name="closed" value="true" />
+      <created>1723995908049</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1723995908049</updated>
+    </task>
+    <task id="LOCAL-00002" summary="richText">
+      <option name="closed" value="true" />
+      <created>1724006015114</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1724006015114</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Paragraphの変換処理">
+      <option name="closed" value="true" />
+      <created>1724070585892</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1724070585892</updated>
+    </task>
+    <task id="LOCAL-00004" summary="BulletListの処理">
+      <option name="closed" value="true" />
+      <created>1724088168818</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1724088168818</updated>
+    </task>
+    <task id="LOCAL-00005" summary="indentの修正">
+      <option name="closed" value="true" />
+      <created>1724088669288</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1724088669288</updated>
+    </task>
+    <task id="LOCAL-00006" summary="OrderedListのマッピング">
+      <option name="closed" value="true" />
+      <created>1724157541084</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1724157541084</updated>
+    </task>
+    <task id="LOCAL-00007" summary="LinkとRichTextPreformattedを追加">
+      <option name="closed" value="true" />
+      <created>1724162544524</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1724162544524</updated>
+    </task>
+    <task id="LOCAL-00008" summary="リファクタリング">
+      <option name="closed" value="true" />
+      <created>1724169561984</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1724169561984</updated>
+    </task>
+    <task id="LOCAL-00009" summary="リファクタリング">
+      <option name="closed" value="true" />
+      <created>1724169576388</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1724169576388</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Nodeをslack blockに変換する" />
+    <MESSAGE value="richText" />
+    <MESSAGE value="Paragraphの変換処理" />
+    <MESSAGE value="BulletListの処理" />
+    <MESSAGE value="indentの修正" />
+    <MESSAGE value="OrderedListのマッピング" />
+    <MESSAGE value="LinkとRichTextPreformattedを追加" />
+    <MESSAGE value="リファクタリング" />
+    <option name="LAST_COMMIT_MESSAGE" value="リファクタリング" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
       <configuration name="JetRunConfigurationType">
+        <watch expression="(child as ContentNode).getContentChars()" language="kotlin" custom="import com.vladsch.flexmark.util.ast.ContentNode" />
         <watch expression="visitor.visit(document)" language="kotlin" />
+      </configuration>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="((java.util.ArrayList)actual2).get(0)" custom="java.util.ArrayList" />
+        <watch expression="((java.util.ArrayList)actual2).get(0)" custom="java.util.ArrayList" />
+        <watch expression="((java.util.ArrayList)actual2).get(9)" language="kotlin" />
+        <watch expression="((java.util.ArrayList)actual2).get(0)" custom="java.util.ArrayList" />
       </configuration>
     </watches-manager>
   </component>

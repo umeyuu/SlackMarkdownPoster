@@ -1,96 +1,106 @@
 package org.example
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-sealed class SlackBlock // Slack Blockの要素を表すシールドクラス
-sealed class RichTextBlockElement // Rich Text Blockの要素を表すシールドクラス
-sealed class RichTextElement // Rich Textの要素を表すシールドクラス
+// シールドクラス
+@Serializable
+sealed class SlackBlock
 
+@Serializable
+sealed class RichTextBlockElement
 
+@Serializable
+sealed class RichTextElement
+
+@Serializable
 data class SlackBlocks(
     val blocks: List<SlackBlock>
 )
 
+@Serializable
 data class PlainText(
-    val type: String,
+    @SerialName("type") val type: String = "plain_text",
     val text: String,
     val emoji: Boolean = false,
-    val verbatim: Boolean = false
-): SlackBlock()
+) : SlackBlock()
 
-
+@Serializable
+@SerialName("header")
 data class Header(
-    val type: String = "header",
     val text: PlainText,
-    val block_id: String?
+    val block_id: String? = null
 ): SlackBlock()
 
-
-// SlackのRich Text Block全体を表すデータクラス
+@Serializable
+@SerialName("rich_text")
 data class RichTextBlock(
-    val type: String = "rich_text",
-    val elements: List<RichTextBlockElement> // 要素のリスト
+    val elements: List<RichTextBlockElement>
 ): SlackBlock()
 
-// Rich Textのセクションを表すデータクラス
+@Serializable
+@SerialName("rich_text_section")
 data class RichTextSection(
-    val type: String = "rich_text_section",
-    val elements: List<RichTextElement> // 要素のリスト
+    val elements: List<RichTextElement>
 ): RichTextBlockElement()
 
-
+@Serializable
+@SerialName("rich_text_list")
 data class RichTextList(
-    val type: String = "rich_text_list",
     val style: String, // "ordered" or "bullet"
     val elements: List<RichTextSection>,
     val indent: Int?, // インデントするピクセル数
     val offset: Int?, // オフセットするピクセル数
-    val border: Int?, // 境界線の太さ
-): RichTextBlockElement()
+    val border: Int? // 境界線の太さ
+) : RichTextBlockElement()
 
+@Serializable
+@SerialName("rich_text_preformatted")
 data class RichTextPreformatted(
-    val type: String = "rich_text_preformatted",
     val elements: List<RichTextElement>,
     val border: Int? = null
-): RichTextBlockElement()
+) : RichTextBlockElement()
 
-
-
-// テキスト要素を表すデータクラス
+@Serializable
+@SerialName("text")
 data class TextElement(
-    val type: String = "text",
     val text: String,
-    val style: TextStyle? = null // Optional: スタイル情報
+    val style: TextStyle? = null
 ): RichTextElement()
 
+@Serializable
+@SerialName("link")
 data class TextLink(
-    val type: String = "link",
     val url: String,
     val text: String,
     val unsafe: Boolean? = null,
     val style: TextStyle? = null
-): RichTextElement()
+) : RichTextElement()
 
-// テキストのスタイルを表すデータクラス
+@Serializable
 data class TextStyle(
     var bold: Boolean = false,
     var italic: Boolean = false,
     var strike: Boolean = false,
-    var code: Boolean = false,
-){
-    fun setItalic(){
+    var code: Boolean = false
+) {
+    fun setItalic() {
         italic = true
     }
-    fun setBold(){
+
+    fun setBold() {
         bold = true
     }
-    fun setStrike(){
+
+    fun setStrike() {
         strike = true
     }
-    fun setCode(){
+
+    fun setCode() {
         code = true
     }
 
-    fun reset(){
+    fun reset() {
         bold = false
         italic = false
         strike = false
