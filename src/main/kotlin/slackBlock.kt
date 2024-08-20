@@ -1,10 +1,13 @@
 package org.example
 
 
-sealed class Block
+sealed class SlackBlock // Slack Blockの要素を表すシールドクラス
+sealed class RichTextBlockElement // Rich Text Blockの要素を表すシールドクラス
+sealed class RichTextElement // Rich Textの要素を表すシールドクラス
+
 
 data class SlackBlocks(
-    val blocks: List<Block>
+    val blocks: List<SlackBlock>
 )
 
 data class PlainText(
@@ -12,27 +15,27 @@ data class PlainText(
     val text: String,
     val emoji: Boolean = false,
     val verbatim: Boolean = false
-): Block()
+): SlackBlock()
 
 
 data class Header(
     val type: String = "header",
     val text: PlainText,
     val block_id: String?
-): Block()
+): SlackBlock()
 
 
 // SlackのRich Text Block全体を表すデータクラス
 data class RichTextBlock(
     val type: String = "rich_text",
-    val elements: List<Block> // 要素のリスト
-): Block()
+    val elements: List<RichTextBlockElement> // 要素のリスト
+): SlackBlock()
 
 // Rich Textのセクションを表すデータクラス
 data class RichTextSection(
     val type: String = "rich_text_section",
     val elements: List<RichTextElement> // 要素のリスト
-): Block()
+): RichTextBlockElement()
 
 
 data class RichTextList(
@@ -42,16 +45,15 @@ data class RichTextList(
     val indent: Int?, // インデントするピクセル数
     val offset: Int?, // オフセットするピクセル数
     val border: Int?, // 境界線の太さ
-): Block()
+): RichTextBlockElement()
 
 data class RichTextPreformatted(
     val type: String = "rich_text_preformatted",
     val elements: List<RichTextElement>,
     val border: Int? = null
-): Block()
+): RichTextBlockElement()
 
 
-sealed class RichTextElement
 
 // テキスト要素を表すデータクラス
 data class TextElement(
