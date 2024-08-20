@@ -1,5 +1,6 @@
 import com.vladsch.flexmark.ast.BulletList
 import com.vladsch.flexmark.ast.OrderedList
+import com.vladsch.flexmark.ast.Paragraph
 import com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension
 import com.vladsch.flexmark.ext.tables.TablesExtension
 import com.vladsch.flexmark.ext.toc.TocExtension
@@ -8,6 +9,7 @@ import com.vladsch.flexmark.util.ast.Node
 import com.vladsch.flexmark.util.data.MutableDataSet
 import com.vladsch.flexmark.util.misc.Extension
 import org.example.*
+import org.example.extention.toRichTextBlock
 import org.junit.jupiter.api.Test
 import java.util.*
 import kotlin.test.assertEquals
@@ -28,6 +30,7 @@ class ConverterKtTest{
             |Hello there, ~~_**I am a basic rich text block!**_~~ and I am not!
             |""".trimMargin()
         val document: Node = parser.parse(markdown)
+        val child: Paragraph = document.firstChild as Paragraph
         val exception = RichTextSection(
             elements = listOf(
                 TextElement(
@@ -45,9 +48,12 @@ class ConverterKtTest{
             )
         )
         // when
-        val actual = getRichTextSection(document, TextStyle(), mutableListOf())
+        val actual = child.toRichTextBlock()
         // then
-        assertEquals(exception, actual)
+        assertEquals(
+            RichTextBlock(elements = listOf(exception)),
+            actual
+        )
     }
 
     @Test
@@ -55,12 +61,10 @@ class ConverterKtTest{
         // given
         val markdown = """
             |GAFA
-            |
             |[Google](https://www.google.com)
-            |
-            |[Amazon](https://www.amazon.com)
             |""".trimMargin()
         val document: Node = parser.parse(markdown)
+        val child : Paragraph = document.firstChild as Paragraph
         val exception = RichTextSection(
             elements = listOf(
                 TextElement(
@@ -71,18 +75,13 @@ class ConverterKtTest{
                     text = "Google",
                     url = "https://www.google.com",
                     style = TextStyle()
-                ),
-                TextLink(
-                    text = "Amazon",
-                    url = "https://www.amazon.com",
-                    style = TextStyle()
                 )
             )
         )
         // when
-        val actual = getRichTextSection(document, TextStyle(), mutableListOf())
+        val actual = child.toRichTextBlock()
         // then
-        assertEquals(exception, actual)
+        assertEquals(RichTextBlock(elements = listOf(exception)), actual)
     }
 
     @Test

@@ -1,10 +1,13 @@
-package org.example
+package org.example.extention
 
-import com.ibm.icu.impl.TextTrieMap.Output
 import com.vladsch.flexmark.ast.*
 import com.vladsch.flexmark.ext.gfm.strikethrough.Strikethrough
 import com.vladsch.flexmark.util.ast.Node
+import org.example.*
 
+/**
+ * H1〜H6をHeader Blockに変換する拡張関数
+ */
 fun Heading.toHeaderBlock() = Header(
     text = PlainText(
         type = "plain_text",
@@ -13,22 +16,78 @@ fun Heading.toHeaderBlock() = Header(
     block_id = this.anchorRefId
 )
 
+/**
+ * 普通のテキストをPlainTextに変換する拡張関数
+ */
 fun Paragraph.toPlainText() = PlainText(
     type = "plain_text",
     text = this.chars.toString()
 )
 
-fun getRichTextSection(node: Node, style: TextStyle, output: MutableList<RichTextElement>): RichTextSection {
+/**
+ * styleを持つテキストであるRichTextBlockを生成する拡張関数
+ */
+fun Paragraph.toRichTextBlock() : RichTextBlock {
+    val section = getRichTextSection(this, TextStyle(), mutableListOf())
+    return RichTextBlock(
+        elements = listOf(section)
+    )
+}
+
+/**
+ * 箇条書きを処理する拡張関数
+ */
+fun BulletList.toRichTextBlock(): RichTextBlock {
+    val (rootList, nestedLists) = processList(this, 0, mutableListOf(), mutableListOf(), "bullet")
+    nestedLists.add(rootList)
+    return RichTextBlock(
+        elements = mergeAndCleanRichTextLists(nestedLists)
+    )
+}
+
+/**
+ * 番号付きリストを処理する拡張関数
+ */
+fun OrderedList.toRichTextBlock(): RichTextBlock {
+    val (rootList, nestedLists) = processList(this, 0, mutableListOf(), mutableListOf(), "ordered")
+    nestedLists.add(rootList)
+    return RichTextBlock(
+        elements = mergeAndCleanRichTextLists(nestedLists)
+    )
+}
+
+/**
+ * コードブロックを処理する拡張関数
+ */
+fun FencedCodeBlock.toRichTextBlock(): RichTextBlock {
+    val child = this.firstChild
+    return RichTextBlock(
+        elements = listOf(
+            RichTextPreformatted(
+                elements = listOf(
+                    TextElement(
+                        text = child?.chars?.toString() ?: ""
+                    )
+                )
+            )
+        )
+    )
+}
+
+
+private fun getRichTextSection(node: Node, style: TextStyle, output: MutableList<RichTextElement>): RichTextSection {
     when (node) {
         is Text -> {
-            output.add(TextElement(
+            output.add(
+                TextElement(
                 text = node.chars.toString(),
                 style = style.copy()
             ))
             style.reset()
         }
         is Link -> {
-            output.add(TextLink(
+            output.add(
+                TextLink(
                 text = node.text.toString(),
                 url = node.url.toString(),
                 style = style.copy()
@@ -54,34 +113,6 @@ fun getRichTextSection(node: Node, style: TextStyle, output: MutableList<RichTex
     return RichTextSection(elements = output)
 }
 
-
-fun FencedCodeBlock.toRichTextPreformatted(): RichTextPreformatted {
-    val child = this.firstChild
-    return RichTextPreformatted(
-        elements = listOf(
-            TextElement(
-                text = child?.chars?.toString() ?: ""
-            )
-        ))
-}
-
-
-
-fun BulletList.toRichTextBlock(): RichTextBlock {
-    val (rootList, nestedLists) = processList(this, 0, mutableListOf(), mutableListOf(), "bullet")
-    nestedLists.add(rootList)
-    return RichTextBlock(
-        elements = mergeAndCleanRichTextLists(nestedLists)
-    )
-}
-
-fun OrderedList.toRichTextBlock(): RichTextBlock {
-    val (rootList, nestedLists) = processList(this, 0, mutableListOf(), mutableListOf(), "ordered")
-    nestedLists.add(rootList)
-    return RichTextBlock(
-        elements = mergeAndCleanRichTextLists(nestedLists)
-    )
-}
 
 private fun processList(
     node: Node, indent: Int,
@@ -129,7 +160,6 @@ private fun processList(
 }
 
 
-
 private fun mergeAndCleanRichTextLists(lists: MutableList<RichTextList>): List<RichTextList> {
     val cleanedList = mutableListOf<RichTextList>()
 
@@ -167,20 +197,4 @@ private fun addRichTextList(
         )
         sections.clear()
     }
-}
-
-
-
-fun Node.toSlackBlocks(): SlackBlocks {
-    val blocks = this.children.mapNotNull { node ->
-        when (node) {
-            is Heading -> node.toHeaderBlock()
-            is Paragraph -> getRichTextSection(node, TextStyle(), mutableListOf())
-            is BulletList -> node.toRichTextBlock()
-            is OrderedList -> node.toRichTextBlock()
-            is FencedCodeBlock -> node.toRichTextPreformatted()
-            else -> null
-        }
-    }
-    return SlackBlocks(blocks = blocks)
 }
