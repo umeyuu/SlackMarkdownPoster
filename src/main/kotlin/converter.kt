@@ -41,18 +41,28 @@ fun getRichTextSection(node: Node, style: TextStyle, output: MutableList<RichTex
 }
 
 
-fun convertRichTextLists(document: Node, indent: Int): RichTextBlock {
-    val (rootList, nestedLists) = processBulletList(document, indent, mutableListOf(), mutableListOf())
+
+fun BulletList.toRichTextBlock(): RichTextBlock {
+    val (rootList, nestedLists) = processList(this, 0, mutableListOf(), mutableListOf(), "bullet")
     nestedLists.add(rootList)
     return RichTextBlock(
         elements = mergeAndCleanRichTextLists(nestedLists)
     )
 }
 
-fun processBulletList(
+fun OrderedList.toRichTextBlock(): RichTextBlock {
+    val (rootList, nestedLists) = processList(this, 0, mutableListOf(), mutableListOf(), "ordered")
+    nestedLists.add(rootList)
+    return RichTextBlock(
+        elements = mergeAndCleanRichTextLists(nestedLists)
+    )
+}
+
+private fun processList(
     node: Node, indent: Int,
     outputSections: MutableList<RichTextSection>,
-    outputLists: MutableList<RichTextList>
+    outputLists: MutableList<RichTextList>,
+    listStyle: String
 ): Pair<RichTextList, MutableList<RichTextList>> {
     var child = node.firstChild
     val currentSections = mutableListOf<RichTextSection>()
@@ -63,24 +73,27 @@ fun processBulletList(
                 val section = getRichTextSection(child, TextStyle(), mutableListOf())
                 currentSections.add(section)
             }
-            is BulletList -> {
-                val (nestedList, nestedOutput) = processBulletList(child, indent + 1, mutableListOf(), mutableListOf())
-                addRichTextList(outputLists, indent, currentSections)
+            is BulletList, is OrderedList -> {
+                val (nestedList, nestedOutput) = processList(
+                    child, indent + 1, mutableListOf(), mutableListOf(),
+                    if (child is BulletList) "bullet" else "ordered"
+                )
+                addRichTextList(outputLists, indent, currentSections, listStyle)
                 outputLists.add(nestedList)
                 outputLists.addAll(nestedOutput)
             }
             else -> {
-                processBulletList(child, indent, currentSections, outputLists)
+                processList(child, indent, currentSections, outputLists, listStyle)
             }
         }
         child = child.next
     }
 
-    addRichTextList(outputLists, indent, currentSections)
+    addRichTextList(outputLists, indent, currentSections, listStyle)
 
     return Pair(
         RichTextList(
-            style = "bullet",
+            style = listStyle,
             elements = outputSections.toMutableList(),
             indent = indent,
             offset = null,
@@ -90,11 +103,13 @@ fun processBulletList(
     )
 }
 
-fun mergeAndCleanRichTextLists(lists: MutableList<RichTextList>): List<RichTextList> {
+
+
+private fun mergeAndCleanRichTextLists(lists: MutableList<RichTextList>): List<RichTextList> {
     val cleanedList = mutableListOf<RichTextList>()
 
     for (list in lists) {
-        val adjustedList = list.copy(indent = list.indent?.minus(1))
+        val adjustedList = list.copy(indent = list.indent)
 
         if (adjustedList.elements.isNotEmpty()) {
             if (cleanedList.isNotEmpty() && cleanedList.last().indent == adjustedList.indent) {
@@ -109,11 +124,16 @@ fun mergeAndCleanRichTextLists(lists: MutableList<RichTextList>): List<RichTextL
     return cleanedList
 }
 
-private fun addRichTextList(outputLists: MutableList<RichTextList>, indent: Int, sections: MutableList<RichTextSection>) {
+private fun addRichTextList(
+    outputLists: MutableList<RichTextList>,
+    indent: Int,
+    sections: MutableList<RichTextSection>,
+    listStyle: String
+) {
     if (sections.isNotEmpty()) {
         outputLists.add(
             RichTextList(
-                style = "bullet",
+                style = listStyle,
                 elements = sections.toMutableList(),
                 indent = indent,
                 offset = null,
@@ -131,7 +151,8 @@ fun Node.toSlackBlocks(): SlackBlocks {
         when (node) {
             is Heading -> node.toHeaderBlock()
             is Paragraph -> getRichTextSection(node, TextStyle(), mutableListOf())
-            is BulletList -> convertRichTextLists(node, 1)
+            is BulletList -> node.toRichTextBlock()
+            is OrderedList -> node.toRichTextBlock()
             else -> null
         }
     }

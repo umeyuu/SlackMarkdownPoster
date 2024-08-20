@@ -1,3 +1,5 @@
+import com.vladsch.flexmark.ast.BulletList
+import com.vladsch.flexmark.ast.OrderedList
 import com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension
 import com.vladsch.flexmark.ext.tables.TablesExtension
 import com.vladsch.flexmark.ext.toc.TocExtension
@@ -59,6 +61,7 @@ class ConverterKtTest{
             |- item2
             |""".trimMargin()
         val document: Node = parser.parse(markdown)
+        val child: BulletList = if (document.firstChild is BulletList) document.firstChild as BulletList else document.firstChild?.next as BulletList
         val exception = listOf(
             RichTextList(
                 style = "bullet",
@@ -88,7 +91,7 @@ class ConverterKtTest{
             )
         )
         // when
-        val actual = convertRichTextLists(document, 0)
+        val actual = child.toRichTextBlock()
         // then
         assertEquals(RichTextBlock(elements = exception), actual)
     }
@@ -106,6 +109,7 @@ class ConverterKtTest{
             |""".trimMargin()
 
         val document: Node = parser.parse(markdown)
+        val child: BulletList = if (document.firstChild is BulletList) document.firstChild as BulletList else document.firstChild?.next as BulletList
         val exception = listOf(
             RichTextList(
                 style = "bullet",
@@ -203,9 +207,122 @@ class ConverterKtTest{
         )
 
         // when
-        val actual = convertRichTextLists(document, 0)
+        val actual = child.toRichTextBlock()
         // then
         assertEquals(RichTextBlock(elements = exception), actual)
     }
 
+    @Test
+    fun `1階層のOrderdList`() {
+        // given
+        val markdown = """
+            |1. item1
+            |2. item2
+            |""".trimMargin()
+        val document: Node = parser.parse(markdown)
+        val child: OrderedList =
+            if (document.firstChild is OrderedList) document.firstChild as OrderedList else document.firstChild?.next as OrderedList
+        val exception = listOf(
+            RichTextList(
+                style = "ordered",
+                elements = listOf(
+                    RichTextSection(
+                        elements = listOf(
+                            RichTextElement(
+                                type = "text",
+                                text = "item1",
+                                style = TextStyle()
+                            )
+                        )
+                    ),
+                    RichTextSection(
+                        elements = listOf(
+                            RichTextElement(
+                                type = "text",
+                                text = "item2",
+                                style = TextStyle()
+                            )
+                        )
+                    )
+                ),
+                indent = 0,
+                offset = null,
+                border = null
+            )
+        )
+        // when
+        val actual = child.toRichTextBlock()
+        // then
+        assertEquals(RichTextBlock(elements = exception), actual)
+    }
+
+    @Test
+    fun `BulletListとOrderedListの混在`() {
+        // given
+        val markdown = """
+            |- item1
+            |  1. item2
+            |     - item3
+            |""".trimMargin()
+        val document: Node = parser.parse(markdown)
+        val child =
+            if (document.firstChild is BulletList) document.firstChild as BulletList else document.firstChild?.next as BulletList
+        val exception = listOf(
+            RichTextList(
+                style = "bullet",
+                elements = listOf(
+                    RichTextSection(
+                        elements = listOf(
+                            RichTextElement(
+                                type = "text",
+                                text = "item1",
+                                style = TextStyle()
+                            )
+                        )
+                    )
+                ),
+                indent = 0,
+                offset = null,
+                border = null
+            ),
+            RichTextList(
+                style = "ordered",
+                elements = listOf(
+                    RichTextSection(
+                        elements = listOf(
+                            RichTextElement(
+                                type = "text",
+                                text = "item2",
+                                style = TextStyle()
+                            )
+                        )
+                    )
+                ),
+                indent = 1,
+                offset = null,
+                border = null
+            ),
+            RichTextList(
+                style = "bullet",
+                elements = listOf(
+                    RichTextSection(
+                        elements = listOf(
+                            RichTextElement(
+                                type = "text",
+                                text = "item3",
+                                style = TextStyle()
+                            )
+                        )
+                    )
+                ),
+                indent = 2,
+                offset = null,
+                border = null
+            )
+        )
+        // when
+        val actual = child.toRichTextBlock()
+        // then
+        assertEquals(RichTextBlock(elements = exception), actual)
+    }
 }
