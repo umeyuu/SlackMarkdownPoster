@@ -18,26 +18,51 @@ fun Paragraph.toPlainText() = PlainText(
     text = this.chars.toString()
 )
 
-fun getRichTextSection(node: Node, style: TextStyle, output: MutableList<RichTextElement>) : RichTextSection {
-    if (node is Text) {
-        output.add(RichTextElement(
-            type = "text",
-            text = node.chars.toString(),
-            style = style.copy()
-        ))
-        style.reset()
+fun getRichTextSection(node: Node, style: TextStyle, output: MutableList<RichTextElement>): RichTextSection {
+    when (node) {
+        is Text -> {
+            output.add(TextElement(
+                text = node.chars.toString(),
+                style = style.copy()
+            ))
+            style.reset()
+        }
+        is Link -> {
+            output.add(TextLink(
+                text = node.text.toString(),
+                url = node.url.toString(),
+                style = style.copy()
+            ))
+            style.reset()
+            return RichTextSection(elements = output)
+        }
     }
+
     var child = node.firstChild
     while (child != null) {
-        when(child) {
+        when (child) {
             is Emphasis -> style.setItalic()
             is StrongEmphasis -> style.setBold()
             is Strikethrough -> style.setStrike()
+            is Code -> style.setCode()
         }
+        // 再帰的に子ノードを処理
         getRichTextSection(child, style, output)
         child = child.next
     }
+
     return RichTextSection(elements = output)
+}
+
+
+fun FencedCodeBlock.toRichTextPreformatted(): RichTextPreformatted {
+    val child = this.firstChild
+    return RichTextPreformatted(
+        elements = listOf(
+            TextElement(
+                text = child?.chars?.toString() ?: ""
+            )
+        ))
 }
 
 
@@ -153,6 +178,7 @@ fun Node.toSlackBlocks(): SlackBlocks {
             is Paragraph -> getRichTextSection(node, TextStyle(), mutableListOf())
             is BulletList -> node.toRichTextBlock()
             is OrderedList -> node.toRichTextBlock()
+            is FencedCodeBlock -> node.toRichTextPreformatted()
             else -> null
         }
     }

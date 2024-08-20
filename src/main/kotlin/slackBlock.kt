@@ -44,18 +44,36 @@ data class RichTextList(
     val border: Int?, // 境界線の太さ
 ): Block()
 
+data class RichTextPreformatted(
+    val type: String = "rich_text_preformatted",
+    val elements: List<RichTextElement>,
+    val border: Int? = null
+): Block()
+
+
+sealed class RichTextElement
+
 // テキスト要素を表すデータクラス
-data class RichTextElement(
-    val type: String,  // "text"
+data class TextElement(
+    val type: String = "text",
     val text: String,
     val style: TextStyle? = null // Optional: スタイル情報
-)
+): RichTextElement()
+
+data class TextLink(
+    val type: String = "link",
+    val url: String,
+    val text: String,
+    val unsafe: Boolean? = null,
+    val style: TextStyle? = null
+): RichTextElement()
 
 // テキストのスタイルを表すデータクラス
 data class TextStyle(
     var bold: Boolean = false,
     var italic: Boolean = false,
     var strike: Boolean = false,
+    var code: Boolean = false,
 ){
     fun setItalic(){
         italic = true
@@ -66,10 +84,14 @@ data class TextStyle(
     fun setStrike(){
         strike = true
     }
+    fun setCode(){
+        code = true
+    }
 
     fun reset(){
         bold = false
         italic = false
         strike = false
+        code = false
     }
 }

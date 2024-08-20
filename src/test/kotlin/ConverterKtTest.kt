@@ -30,19 +30,51 @@ class ConverterKtTest{
         val document: Node = parser.parse(markdown)
         val exception = RichTextSection(
             elements = listOf(
-                RichTextElement(
-                    type = "text",
+                TextElement(
                     text = "Hello there, ",
                     style = TextStyle()
                 ),
-                RichTextElement(
-                    type = "text",
+                TextElement(
                     text = "I am a basic rich text block!",
                     style = TextStyle(bold = true, italic = true, strike = true)
                 ),
-                RichTextElement(
-                    type = "text",
+                TextElement(
                     text = " and I am not!",
+                    style = TextStyle()
+                )
+            )
+        )
+        // when
+        val actual = getRichTextSection(document, TextStyle(), mutableListOf())
+        // then
+        assertEquals(exception, actual)
+    }
+
+    @Test
+    fun `Linkの処理`(){
+        // given
+        val markdown = """
+            |GAFA
+            |
+            |[Google](https://www.google.com)
+            |
+            |[Amazon](https://www.amazon.com)
+            |""".trimMargin()
+        val document: Node = parser.parse(markdown)
+        val exception = RichTextSection(
+            elements = listOf(
+                TextElement(
+                    text = "GAFA",
+                    style = TextStyle()
+                ),
+                TextLink(
+                    text = "Google",
+                    url = "https://www.google.com",
+                    style = TextStyle()
+                ),
+                TextLink(
+                    text = "Amazon",
+                    url = "https://www.amazon.com",
                     style = TextStyle()
                 )
             )
@@ -68,8 +100,7 @@ class ConverterKtTest{
                 elements = listOf(
                     RichTextSection(
                         elements = listOf(
-                            RichTextElement(
-                                type = "text",
+                            TextElement(
                                 text = "item1",
                                 style = TextStyle()
                             )
@@ -77,8 +108,7 @@ class ConverterKtTest{
                     ),
                     RichTextSection(
                         elements = listOf(
-                            RichTextElement(
-                                type = "text",
+                            TextElement(
                                 text = "item2",
                                 style = TextStyle()
                             )
@@ -116,8 +146,7 @@ class ConverterKtTest{
                 elements = listOf(
                     RichTextSection(
                         elements = listOf(
-                            RichTextElement(
-                                type = "text",
+                            TextElement(
                                 text = "item1",
                                 style = TextStyle()
                             )
@@ -132,8 +161,7 @@ class ConverterKtTest{
                 elements = listOf(
                     RichTextSection(
                         elements = listOf(
-                            RichTextElement(
-                                type = "text",
+                            TextElement(
                                 text = "item1-1",
                                 style = TextStyle()
                             )
@@ -141,8 +169,7 @@ class ConverterKtTest{
                     ),
                     RichTextSection(
                         elements = listOf(
-                            RichTextElement(
-                                type = "text",
+                            TextElement(
                                 text = "item1-2",
                                 style = TextStyle()
                             )
@@ -158,8 +185,7 @@ class ConverterKtTest{
                 elements = listOf(
                     RichTextSection(
                         elements = listOf(
-                            RichTextElement(
-                                type = "text",
+                            TextElement(
                                 text = "item1-2-1",
                                 style = TextStyle()
                             )
@@ -175,8 +201,7 @@ class ConverterKtTest{
                 elements = listOf(
                     RichTextSection(
                         elements = listOf(
-                            RichTextElement(
-                                type = "text",
+                            TextElement(
                                 text = "item2",
                                 style = TextStyle()
                             )
@@ -192,8 +217,7 @@ class ConverterKtTest{
                 elements = listOf(
                     RichTextSection(
                         elements = listOf(
-                            RichTextElement(
-                                type = "text",
+                            TextElement(
                                 text = "item2-1",
                                 style = TextStyle()
                             )
@@ -228,8 +252,7 @@ class ConverterKtTest{
                 elements = listOf(
                     RichTextSection(
                         elements = listOf(
-                            RichTextElement(
-                                type = "text",
+                            TextElement(
                                 text = "item1",
                                 style = TextStyle()
                             )
@@ -237,8 +260,7 @@ class ConverterKtTest{
                     ),
                     RichTextSection(
                         elements = listOf(
-                            RichTextElement(
-                                type = "text",
+                            TextElement(
                                 text = "item2",
                                 style = TextStyle()
                             )
@@ -273,8 +295,7 @@ class ConverterKtTest{
                 elements = listOf(
                     RichTextSection(
                         elements = listOf(
-                            RichTextElement(
-                                type = "text",
+                            TextElement(
                                 text = "item1",
                                 style = TextStyle()
                             )
@@ -290,8 +311,7 @@ class ConverterKtTest{
                 elements = listOf(
                     RichTextSection(
                         elements = listOf(
-                            RichTextElement(
-                                type = "text",
+                            TextElement(
                                 text = "item2",
                                 style = TextStyle()
                             )
@@ -307,8 +327,7 @@ class ConverterKtTest{
                 elements = listOf(
                     RichTextSection(
                         elements = listOf(
-                            RichTextElement(
-                                type = "text",
+                            TextElement(
                                 text = "item3",
                                 style = TextStyle()
                             )
