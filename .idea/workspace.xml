@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79906c5a-37a6-4d74-a276-7c095a6b8246" name="変更" comment="リファクタリング">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample-file/sample.md" beforeDir="false" afterPath="$PROJECT_DIR$/sample-file/sample.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/MarkdownToSlackService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/MarkdownToSlackService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/SlackApiClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SlackApiClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/extention/converter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/extention/converter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/slackBlock.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/slackBlock.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,7 +78,7 @@
     "Kotlin.App.executor": "Run",
     "Kotlin.BasicSample.executor": "Debug",
     "Kotlin.ConverterKt.executor": "Run",
-    "Kotlin.MainKt.executor": "Debug",
+    "Kotlin.MainKt.executor": "Run",
     "Kotlin.SampleKt.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -158,6 +157,30 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="ConverterKtTest.2階層のBulletListの処理" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ConverterKtTest.2階層のBulletListの処理&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="ConverterKtTest.Linkの処理" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -182,30 +205,6 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="ConverterKtTest.Paragraphの処理" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;ConverterKtTest.Paragraphの処理&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.MainKt" />
       <module name="Markdown_Converter.main" />
@@ -216,10 +215,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.MainKt" />
-        <item itemvalue="Gradle.ConverterKtTest.1階層のBulletListの処理" />
-        <item itemvalue="Gradle.ConverterKtTest.Paragraphの処理" />
-        <item itemvalue="Gradle.ConverterKtTest.Linkの処理" />
         <item itemvalue="Gradle.ConverterKtTest" />
+        <item itemvalue="Gradle.ConverterKtTest.2階層のBulletListの処理" />
+        <item itemvalue="Gradle.ConverterKtTest.1階層のBulletListの処理" />
+        <item itemvalue="Gradle.ConverterKtTest.Linkの処理" />
       </list>
     </recent_temporary>
   </component>
@@ -304,7 +303,31 @@
       <option name="project" value="LOCAL" />
       <updated>1724169576388</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="slackと疎通">
+      <option name="closed" value="true" />
+      <created>1724181166598</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1724181166598</updated>
+    </task>
+    <task id="LOCAL-00011" summary="json変換機作成">
+      <option name="closed" value="true" />
+      <created>1724246259271</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1724246259271</updated>
+    </task>
+    <task id="LOCAL-00012" summary="リファクタリング">
+      <option name="closed" value="true" />
+      <created>1724249335395</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1724249335395</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -315,6 +338,8 @@
     <MESSAGE value="indentの修正" />
     <MESSAGE value="OrderedListのマッピング" />
     <MESSAGE value="LinkとRichTextPreformattedを追加" />
+    <MESSAGE value="slackと疎通" />
+    <MESSAGE value="json変換機作成" />
     <MESSAGE value="リファクタリング" />
     <option name="LAST_COMMIT_MESSAGE" value="リファクタリング" />
   </component>

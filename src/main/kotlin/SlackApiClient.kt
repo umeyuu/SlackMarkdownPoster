@@ -13,7 +13,6 @@ class SlackApiClient {
         val jsonObject = slackBlock.toJson()
         val jsonString = jsonObject.toString()
         return sendHttpsPostRequest(jsonString)
-
     }
 
     private fun sendHttpsPostRequest(payload: String): String {

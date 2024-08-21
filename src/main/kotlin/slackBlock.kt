@@ -5,7 +5,6 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 
-// シールドクラス
 
 sealed class SlackBlock {
     abstract fun toJson(): JsonObject
@@ -34,7 +33,7 @@ data class SlackBlocks(
 data class PlainText(
     val type: String = "plain_text",
     val text: String,
-    val emoji: Boolean = false,
+    val emoji: Boolean = true,
 ) : SlackBlock() {
     override fun toJson(): JsonObject {
         return JsonObject(mapOf(
