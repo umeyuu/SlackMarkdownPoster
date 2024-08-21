@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.9.23"
     kotlin("plugin.serialization") version "1.8.20"
+    application
 }
 
 group = "org.example"
@@ -15,6 +16,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("org.yaml:snakeyaml:2.0")
     testImplementation(kotlin("test"))
+}
+
+application {
+    mainClass.set("org.example.MainKt") // メインクラスを指定
 }
 
 tasks.test {
