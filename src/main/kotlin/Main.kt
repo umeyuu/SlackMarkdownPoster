@@ -11,6 +11,8 @@ import java.io.File
 import java.util.*
 
 fun main() {
+    ConfigLoader.loadYml("application.yml")
+
     val options = MutableDataSet()
     options.set(
         Parser.EXTENSIONS,
@@ -29,6 +31,7 @@ fun main() {
     // ASTをSlackのブロックに変換
     val converter = SlackBlockConverter()
     val slackBlocks = converter.convert(document)
+
 
     val slackApiClient = SlackApiClient()
     val response = slackApiClient.postToSlack(slackBlocks)

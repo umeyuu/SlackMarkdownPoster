@@ -1,7 +1,5 @@
 package org.example
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
@@ -76,12 +74,11 @@ data class RichTextBlock(
 
 
 data class RichTextSection(
-    @SerialName("type") val type: String = "rich_text_section",
     val elements: List<RichTextElement>
 ): RichTextBlockElement() {
     override fun toJson(): JsonObject {
         return JsonObject(mapOf(
-            "type" to JsonPrimitive(type),
+            "type" to JsonPrimitive("rich_text_section"),
             "elements" to JsonArray(elements.map { it.toJson() })
         ))
     }

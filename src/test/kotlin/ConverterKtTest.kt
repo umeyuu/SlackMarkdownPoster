@@ -114,9 +114,7 @@ class ConverterKtTest{
                         )
                     )
                 ),
-                indent = 0,
-                offset = null,
-                border = null
+                indent = 0
             )
         )
         // when
@@ -152,9 +150,7 @@ class ConverterKtTest{
                         )
                     )
                 ),
-                indent = 0,
-                offset = null,
-                border = null
+                indent = 0
             ),RichTextList(
                 style = "bullet",
                 elements = listOf(
@@ -175,9 +171,7 @@ class ConverterKtTest{
                         )
                     )
                 ),
-                indent = 1,
-                offset = null,
-                border = null
+                indent = 1
             ),
             RichTextList(
                 style = "bullet",
@@ -191,9 +185,7 @@ class ConverterKtTest{
                         )
                     )
                 ),
-                indent = 2,
-                offset = null,
-                border = null
+                indent = 2
             ),
             RichTextList(
                 style = "bullet",
@@ -207,9 +199,7 @@ class ConverterKtTest{
                         )
                     )
                 ),
-                indent = 0,
-                offset = null,
-                border = null
+                indent = 0
             ),
             RichTextList(
                 style = "bullet",
@@ -223,9 +213,7 @@ class ConverterKtTest{
                         )
                     )
                 ),
-                indent = 1,
-                offset = null,
-                border = null
+                indent = 1
             )
         )
 
@@ -266,9 +254,7 @@ class ConverterKtTest{
                         )
                     )
                 ),
-                indent = 0,
-                offset = null,
-                border = null
+                indent = 0
             )
         )
         // when
@@ -301,9 +287,7 @@ class ConverterKtTest{
                         )
                     )
                 ),
-                indent = 0,
-                offset = null,
-                border = null
+                indent = 0
             ),
             RichTextList(
                 style = "ordered",
@@ -317,9 +301,7 @@ class ConverterKtTest{
                         )
                     )
                 ),
-                indent = 1,
-                offset = null,
-                border = null
+                indent = 1
             ),
             RichTextList(
                 style = "bullet",
@@ -333,9 +315,7 @@ class ConverterKtTest{
                         )
                     )
                 ),
-                indent = 2,
-                offset = null,
-                border = null
+                indent = 2
             )
         )
         // when

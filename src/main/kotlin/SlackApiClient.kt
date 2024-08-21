@@ -4,9 +4,10 @@ import java.io.OutputStream
 import java.net.HttpURLConnection
 import java.net.URL
 
+
 class SlackApiClient {
 
-    private val apiUrl = "https://hooks.slack.com/services/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"
+    private val webhookUrl = ConfigLoader.getProperty("slack.webhook_url")
 
     fun postToSlack(slackBlock: SlackBlocks) : String{
         val jsonObject = slackBlock.toJson()
@@ -15,8 +16,8 @@ class SlackApiClient {
 
     }
 
-    fun sendHttpsPostRequest(payload: String): String {
-        val connection = (URL(apiUrl).openConnection() as HttpURLConnection).apply {
+    private fun sendHttpsPostRequest(payload: String): String {
+        val connection = (URL(webhookUrl).openConnection() as HttpURLConnection).apply {
             requestMethod = "POST"
             doOutput = true
             setRequestProperty("Content-Type", "application/json")

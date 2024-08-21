@@ -13,6 +13,7 @@ repositories {
 dependencies {
     implementation("com.vladsch.flexmark:flexmark-all:0.64.8")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+    implementation("org.yaml:snakeyaml:2.0")
     testImplementation(kotlin("test"))
 }
 
