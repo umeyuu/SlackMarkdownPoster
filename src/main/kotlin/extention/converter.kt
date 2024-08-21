@@ -149,9 +149,7 @@ private fun processList(
         RichTextList(
             style = listStyle,
             elements = outputSections.toMutableList(),
-            indent = indent,
-            offset = null,
-            border = null
+            indent = indent
         ),
         outputLists
     )
@@ -188,9 +186,7 @@ private fun addRichTextList(
             RichTextList(
                 style = listStyle,
                 elements = sections.toMutableList(),
-                indent = indent,
-                offset = null,
-                border = null
+                indent = indent
             )
         )
         sections.clear()

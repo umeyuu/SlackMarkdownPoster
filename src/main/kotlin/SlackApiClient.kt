@@ -1,22 +1,16 @@
 package org.example
 
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import java.io.OutputStream
-import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URL
 
 class SlackApiClient {
 
-    private val apiUrl = ""
+    private val apiUrl = "https://hooks.slack.com/services/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"
 
     fun postToSlack(slackBlock: SlackBlocks) : String{
-        val json = Json {
-            prettyPrint = true
-            encodeDefaults = true
-        }
-        val jsonString = json.encodeToString(slackBlock)
+        val jsonObject = slackBlock.toJson()
+        val jsonString = jsonObject.toString()
         return sendHttpsPostRequest(jsonString)
 
     }
