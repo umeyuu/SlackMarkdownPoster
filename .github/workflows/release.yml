@@ -17,14 +17,14 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'  # KotlinがJava 17を使用する設定
+          distribution: 'temurin'  # JDKのディストリビューションを指定
 
       - name: Build with Gradle
         run: ./gradlew shadowJar  # shadowJarタスクでJARファイルをビルド
 
       - name: Upload JAR to GitHub Releases
-        uses: actions/upload-release-asset@v1
+        uses: gh-action-release@v1
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: build/libs/Markdown_Converter-1.0-SNAPSHOT.jar
-          asset_name: Markdown_Converter-1.0-SNAPSHOT.jar
-          asset_content_type: application/java-archive
+          files: build/libs/Markdown_Converter-1.0-SNAPSHOT.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
