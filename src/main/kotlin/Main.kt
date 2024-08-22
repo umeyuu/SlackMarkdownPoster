@@ -1,13 +1,7 @@
 package org.example
 
-fun main(args: Array<String>) {
-    if (args.isEmpty()) {
-        throw IllegalArgumentException("Please specify the markdown file path.")
-    }
-    val filePath = args[0]
-
-    ConfigLoader.loadYml("application.yml")
-
+fun main() {
+    val filePath = System.getenv("FILE_PATH")
     val service = MarkdownToSlackService()
-    service.postToSlack("sample-file/${filePath}")
+    service.postToSlack(filePath)
 }

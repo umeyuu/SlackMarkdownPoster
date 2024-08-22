@@ -7,7 +7,7 @@ import java.net.URL
 
 class SlackApiClient {
 
-    private val webhookUrl = ConfigLoader.getProperty("slack.webhook_url")
+    private val webhookUrl = System.getenv("SLACK_WEBHOOK_URL")
 
     fun postToSlack(slackBlock: SlackBlocks) : String{
         val jsonObject = slackBlock.toJson()
