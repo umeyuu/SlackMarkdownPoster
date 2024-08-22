@@ -4,7 +4,12 @@ on:
   push:
     tags:
       - 'v*.*.*'  # タグが `v1.0.0` のような形式のときにトリガーされます
-  workflow_dispatch:  # 手動でワークフローを実行するための設定
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag'
+        required: true
+        default: 'v1.0.0'
 
 jobs:
   build:
@@ -27,5 +32,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: build/libs/Markdown_Converter-1.0-SNAPSHOT.jar
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ github.event.inputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
