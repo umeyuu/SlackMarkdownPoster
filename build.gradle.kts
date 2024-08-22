@@ -6,7 +6,6 @@ plugins {
 }
 
 group = "org.example"
-version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -40,7 +39,5 @@ tasks.jar {
 
 // Shadow JARタスクの設定
 tasks.shadowJar {
-    archiveBaseName.set("Markdown_Converter")
-    archiveClassifier.set("")
-    archiveVersion.set("1.0-SNAPSHOT")
+    archiveBaseName.set("SlackMarkdownPoster")
 }
