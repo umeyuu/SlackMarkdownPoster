@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # タグが `v1.0.0` のような形式のときにトリガーされます
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'  # KotlinがJava 17を使用する設定
+
+      - name: Build with Gradle
+        run: ./gradlew shadowJar  # shadowJarタスクでJARファイルをビルド
+
+      - name: Upload JAR to GitHub Releases
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/libs/Markdown_Converter-1.0-SNAPSHOT.jar
+          asset_name: Markdown_Converter-1.0-SNAPSHOT.jar
+          asset_content_type: application/java-archive
