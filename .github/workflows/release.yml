@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*.*.*'  # タグが `v1.0.0` のような形式のときにトリガーされます
+  workflow_dispatch:  # 手動でワークフローを実行するための設定
 
 jobs:
   build:
@@ -16,15 +17,19 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'  # KotlinがJava 17を使用する設定
-          distribution: 'temurin'  # JDKのディストリビューションを指定
+          java-version: '17'
+          distribution: 'temurin'
 
       - name: Build with Gradle
-        run: ./gradlew shadowJar  # shadowJarタスクでJARファイルをビルド
+        run: ./gradlew shadowJar
+
+      - name: Set up GitHub CLI
+        uses: cli/gh-action@v2
+        with:
+          version: latest
 
       - name: Upload JAR to GitHub Releases
-        uses: gh-action-release@v1
-        with:
-          files: build/libs/Markdown_Converter-1.0-SNAPSHOT.jar
+        run: |
+          gh release create ${{ github.ref }} build/libs/Markdown_Converter-1.0-SNAPSHOT.jar --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
