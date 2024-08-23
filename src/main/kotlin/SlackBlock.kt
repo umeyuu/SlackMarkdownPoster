@@ -18,12 +18,23 @@ sealed class RichTextElement {
     abstract fun toJson(): JsonObject
 }
 
-
 data class SlackBlocks(
+    val attachments: List<SlackBlocksAttachment>
+){
+    fun toJson(): JsonObject {
+        return JsonObject(mapOf(
+            "attachments" to JsonArray(attachments.map { it.toJson() })
+        ))
+    }
+}
+
+data class SlackBlocksAttachment(
+    val color: String,
     val blocks: List<SlackBlock>
 ) {
     fun toJson(): JsonObject {
         return JsonObject(mapOf(
+            "color" to JsonPrimitive(color),
             "blocks" to JsonArray(blocks.map { it.toJson() })
         ))
     }
