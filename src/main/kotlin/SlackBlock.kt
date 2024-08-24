@@ -69,6 +69,57 @@ data class Header(
     }
 }
 
+data class Divider(
+    val block_id: String?
+): SlackBlock() {
+    override fun toJson(): JsonObject {
+        return JsonObject(mapOf(
+            "type" to JsonPrimitive("divider"),
+            "block_id" to JsonPrimitive(block_id)
+        ))
+    }
+}
+
+data class TextImageContext(
+    val elements: List<ContextElement>
+): SlackBlock() {
+    override fun toJson(): JsonObject {
+        return JsonObject(
+            mapOf(
+                "type" to JsonPrimitive("context"),
+                "elements" to JsonArray(elements.map { it.toJson() })
+            )
+        )
+    }
+}
+
+sealed class ContextElement {
+    abstract fun toJson(): JsonObject
+}
+
+data class MarkdownContextElement(
+    val text: String
+): ContextElement() {
+    override fun toJson(): JsonObject {
+        return JsonObject(mapOf(
+            "type" to JsonPrimitive("mrkdwn"),
+            "text" to JsonPrimitive(text)
+        ))
+    }
+}
+
+data class ImageContextElement(
+    val image_url: String,
+    val alt_text: String
+): ContextElement() {
+    override fun toJson(): JsonObject {
+        return JsonObject(mapOf(
+            "type" to JsonPrimitive("image"),
+            "image_url" to JsonPrimitive(image_url),
+            "alt_text" to JsonPrimitive(alt_text)
+        ))
+    }
+}
 
 data class RichTextBlock(
     val elements: List<RichTextBlockElement>

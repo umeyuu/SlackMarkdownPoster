@@ -32,5 +32,22 @@ object ConfigLoader {
     fun getProperty(key: String): String? {
         return properties.getProperty(key)
     }
+
+    // content.sectionのキー一覧を取得
+    fun getSectionKeys(): List<String> {
+        return properties.keys
+            .filterIsInstance<String>()
+            .filter { it.startsWith("content.section") }
+            .map { it.substringAfter("content.").substringBefore(".") }
+            .distinct()
+    }
+
+    // content.sectionX.titleの値一覧を取得
+    fun getSectionTitles(): List<String> {
+        return properties.keys
+            .filterIsInstance<String>()
+            .filter { it.startsWith("content.section") && it.endsWith(".title") }
+            .mapNotNull { properties.getProperty(it) }
+    }
 }
 

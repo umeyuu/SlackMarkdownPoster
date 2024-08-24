@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79906c5a-37a6-4d74-a276-7c095a6b8246" name="変更" comment="fix">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample-file/sample.md" beforeDir="false" afterPath="$PROJECT_DIR$/sample-file/sample.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ConfigLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ConfigLoader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SlackBlock.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SlackBlock.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/SlackBlockConverter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SlackBlockConverter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/slackBlock.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SlackBlock.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/extention/converter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/extention/converter.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,46 +64,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.ConverterKtTest.1階層のBulletListの処理.executor": "Run",
-    "Gradle.ConverterKtTest.1階層のOrderdList.executor": "Run",
-    "Gradle.ConverterKtTest.2階層のBulletListの処理.executor": "Run",
-    "Gradle.ConverterKtTest.BulletListとOrderedListの混在.executor": "Run",
-    "Gradle.ConverterKtTest.BulletListの処理.executor": "Run",
-    "Gradle.ConverterKtTest.Linkの処理.executor": "Run",
-    "Gradle.ConverterKtTest.Paragraphの処理.executor": "Run",
-    "Gradle.ConverterKtTest.executor": "Run",
-    "Gradle.Markdown_Converter のビルド.executor": "Run",
-    "Gradle.SlackMarkdownPoster のビルド.executor": "Run",
-    "JAR アプリケーション.Markdown_Converter-1.0-SNAPSHOT-all.jar.executor": "Run",
-    "JAR アプリケーション.Markdown_Converter-1.0-SNAPSHOT.jar (1).executor": "Run",
-    "JAR アプリケーション.Markdown_Converter-1.0-SNAPSHOT.jar.executor": "Run",
-    "JAR アプリケーション.SlackMarkdownPoster-1.0-SNAPSHOT.jar.executor": "Run",
-    "JAR アプリケーション.SlackMarkdownPoster-all.jar.executor": "Run",
-    "Kotlin.App.executor": "Run",
-    "Kotlin.BasicSample.executor": "Debug",
-    "Kotlin.ConverterKt.executor": "Run",
-    "Kotlin.MainKt.executor": "Debug",
-    "Kotlin.SampleKt.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/umedayuusuke/IdeaProjects/SlackMarkdownPoster",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.ConverterKtTest.1階層のBulletListの処理.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConverterKtTest.1階層のOrderdList.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConverterKtTest.2階層のBulletListの処理.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConverterKtTest.BulletListとOrderedListの混在.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConverterKtTest.BulletListの処理.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConverterKtTest.Linkの処理.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConverterKtTest.Paragraphの処理.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ConverterKtTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Markdown_Converter のビルド.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SlackMarkdownPoster のビルド.executor&quot;: &quot;Run&quot;,
+    &quot;JAR アプリケーション.Markdown_Converter-1.0-SNAPSHOT-all.jar.executor&quot;: &quot;Run&quot;,
+    &quot;JAR アプリケーション.Markdown_Converter-1.0-SNAPSHOT.jar (1).executor&quot;: &quot;Run&quot;,
+    &quot;JAR アプリケーション.Markdown_Converter-1.0-SNAPSHOT.jar.executor&quot;: &quot;Run&quot;,
+    &quot;JAR アプリケーション.SlackMarkdownPoster-1.0-SNAPSHOT.jar.executor&quot;: &quot;Run&quot;,
+    &quot;JAR アプリケーション.SlackMarkdownPoster-all.jar.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.App.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.BasicSample.executor&quot;: &quot;Debug&quot;,
+    &quot;Kotlin.ConverterKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.MainKt.executor&quot;: &quot;Debug&quot;,
+    &quot;Kotlin.SampleKt.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/umedayuusuke/IdeaProjects/SlackMarkdownPoster&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/新規スクラッチファイル": [
-      "JSON"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/新規スクラッチファイル&quot;: [
+      &quot;JSON&quot;
     ],
-    "kotlin-gradle-user-dirs": [
-      "/Users/umedayuusuke/.gradle"
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;/Users/umedayuusuke/.gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -352,7 +353,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724350240237</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="fix">
+      <option name="closed" value="true" />
+      <created>1724466726259</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1724466726259</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -375,11 +384,16 @@
     <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/MarkdownToSlackService.kt</url>
+          <line>18</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
-      <configuration name="JetRunConfigurationType">
-        <watch expression="(child as ContentNode).getContentChars()" language="kotlin" custom="import com.vladsch.flexmark.util.ast.ContentNode" />
-        <watch expression="visitor.visit(document)" language="kotlin" />
-      </configuration>
       <configuration name="GradleRunConfiguration">
         <watch expression="((java.util.ArrayList)actual2).get(0)" custom="java.util.ArrayList" />
         <watch expression="((java.util.ArrayList)actual2).get(0)" custom="java.util.ArrayList" />

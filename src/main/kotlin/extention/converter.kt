@@ -18,9 +18,14 @@ fun Heading.toHeaderBlock() = Header(
 /**
  * 普通のテキストをPlainTextに変換する拡張関数
  */
-//fun Paragraph.toPlainText() = PlainText(
-//    text = this.chars.toString()
-//)
+fun Paragraph.toPlainText() = PlainText(
+    text = this.chars.toString()
+)
+
+
+fun ThematicBreak.toDivider() = Divider(
+    block_id = ""
+)
 
 /**
  * styleを持つテキストであるRichTextBlockを生成する拡張関数

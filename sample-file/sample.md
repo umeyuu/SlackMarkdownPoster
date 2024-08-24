@@ -1,22 +1,23 @@
-# sample File 👦
+# Issueの振り返り
 
-This is a sample file.
+## イシューの背景を理解する
 
-- List item 1　🏀
-- _List item 2_
-- List item 3
+----
+- ESSに検索APIを埋め込み、検索の機能をv1appから引き剥がすために作成された。 
+- ESSから検索機能を引き剥がす事で、どんな良い事がある？ 
+  - 検索機能を効率的に開発できる 
+  - 検索品質に集中できる 
+  - ESSでうまくいった検索機能をCRS等の他のプロダクトに展開しやすくなる 
+  
+#### つまり、今後ESSユーザーへより良い検索体験を提供するための基盤作り。
 
-## Heading 2
+## 目的と価値の明確化する
 
-1. **Numbered list item 1**
-2. ~~Numbered list item 2~~
-   - List item 1
-   - List item 2
-3. `Numbered list item 3`
+このイシューを解決する事で、どんな価値が生まれるのか？ 
 
-### Heading 3
+検索機能を効率的に開発できる
 
-```
-def sample_function():
-    print("This is a sample function")
-```
+## このイシューで学んだ事
+- ESSの検索機能を効率的に開発するためには、検索APIを埋め込む事が重要である。
+- 検索品質に集中するためには、検索機能を分離する事が重要である。
+- ESSでうまくいった検索機能をCRS等の他のプロダクトに展開するためには、検索機能を分離する事が重要である。
