@@ -41,15 +41,13 @@ class SlackBlockConverter {
             !(block is Header && excludeList.contains(block.text.text))
         }.flatMap { block ->
             when {
-                block is Header && block.text.text == contentTitle -> listOf(block)
+                block is Header && block.text.text.contains(contentTitle.toString()) -> listOf(block)
                 block is Header && sectionTitles.any { block.text.text.contains(it) } -> block.toTextImageContextWithDivider()
                 block is Header -> listOf(block.toTextImageContext())
                 else -> listOf(block)
             }
         }
     }
-
-
 
     private fun Header.toTextImageContextWithDivider(): List<SlackBlock> {
         return listOf(
