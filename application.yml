@@ -1,6 +1,10 @@
 slack:
   color: "#00afcc"
 
+exclude:
+  - "メモ"
+  - "質問"
+
 content:
   title: "Issueの振り返り"
 

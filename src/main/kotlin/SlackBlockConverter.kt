@@ -35,8 +35,11 @@ class SlackBlockConverter {
     private fun List<SlackBlock>.applyFormatting(): List<SlackBlock> {
         val sectionTitles = ConfigLoader.getSectionTitles()
         val contentTitle = ConfigLoader.getProperty("content.title")
+        val excludeList = ConfigLoader.getExcludeList()
 
-        return this.flatMap { block ->
+        return this.takeWhile { block ->
+            !(block is Header && excludeList.contains(block.text.text))
+        }.flatMap { block ->
             when {
                 block is Header && block.text.text == contentTitle -> listOf(block)
                 block is Header && sectionTitles.any { block.text.text.contains(it) } -> block.toTextImageContextWithDivider()
@@ -45,6 +48,8 @@ class SlackBlockConverter {
             }
         }
     }
+
+
 
     private fun Header.toTextImageContextWithDivider(): List<SlackBlock> {
         return listOf(

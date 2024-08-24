@@ -49,5 +49,17 @@ object ConfigLoader {
             .filter { it.startsWith("content.section") && it.endsWith(".title") }
             .mapNotNull { properties.getProperty(it) }
     }
+
+    // excludeリストを読み込む関数
+    fun getExcludeList(): List<String> {
+        val excludeProperty = properties.getProperty("exclude")
+        return if (excludeProperty != null) {
+            val yaml = Yaml()
+            val excludeList = yaml.load<List<String>>(excludeProperty)
+            excludeList.map { it.trim() } // 前後のスペースを削除
+        } else {
+            emptyList()
+        }
+    }
 }
 

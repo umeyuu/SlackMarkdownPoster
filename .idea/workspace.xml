@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79906c5a-37a6-4d74-a276-7c095a6b8246" name="変更" comment="fix">
+    <list default="true" id="79906c5a-37a6-4d74-a276-7c095a6b8246" name="変更" comment="titleの包含判定を柔軟にした">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample-file/sample.md" beforeDir="false" afterPath="$PROJECT_DIR$/sample-file/sample.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/ConfigLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ConfigLoader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SlackBlock.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SlackBlock.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/SlackBlockConverter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SlackBlockConverter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/extention/converter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/extention/converter.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -361,7 +359,23 @@
       <option name="project" value="LOCAL" />
       <updated>1724466726259</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="formatを設定できる様にした">
+      <option name="closed" value="true" />
+      <created>1724479701343</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1724479701343</updated>
+    </task>
+    <task id="LOCAL-00026" summary="titleの包含判定を柔軟にした">
+      <option name="closed" value="true" />
+      <created>1724481339007</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1724481339007</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -381,18 +395,11 @@
     <MESSAGE value="バージョンアップ" />
     <MESSAGE value="リファクタリング" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="formatを設定できる様にした" />
+    <MESSAGE value="titleの包含判定を柔軟にした" />
+    <option name="LAST_COMMIT_MESSAGE" value="titleの包含判定を柔軟にした" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/MarkdownToSlackService.kt</url>
-          <line>18</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="GradleRunConfiguration">
         <watch expression="((java.util.ArrayList)actual2).get(0)" custom="java.util.ArrayList" />
