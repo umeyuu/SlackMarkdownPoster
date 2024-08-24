@@ -39,7 +39,7 @@ class SlackBlockConverter {
         return this.flatMap { block ->
             when {
                 block is Header && block.text.text == contentTitle -> listOf(block)
-                block is Header && sectionTitles.contains(block.text.text) -> block.toTextImageContextWithDivider()
+                block is Header && sectionTitles.any { block.text.text.contains(it) } -> block.toTextImageContextWithDivider()
                 block is Header -> listOf(block.toTextImageContext())
                 else -> listOf(block)
             }
@@ -56,7 +56,7 @@ class SlackBlockConverter {
 
     private fun Header.toTextImageContext(): TextImageContext {
         val sectionKey = ConfigLoader.getSectionKeys().firstOrNull {
-            this.text.text == ConfigLoader.getProperty("content.$it.title")
+            this.text.text.contains(ConfigLoader.getProperty("content.$it.title") ?: "")
         }
 
         val elements = mutableListOf<ContextElement>()
