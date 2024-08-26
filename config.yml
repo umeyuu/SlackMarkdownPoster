@@ -1,0 +1,17 @@
+slack:
+  color: "#009bbf"
+
+exclude:
+  - "メモ"
+  - "質問"
+
+content:
+  title: "content title"
+
+  section1:
+    title: "H2 title"
+    image_url: "https://dol.ismcdn.jp/mwimgs/5/d/600/img_7e0b8adba77c91687a8078920dedc7be160077.jpg"
+
+  section2:
+    title: "H3 title"
+    image_url: "https://news.walkerplus.com/article/1179677/12640174_615.jpg"

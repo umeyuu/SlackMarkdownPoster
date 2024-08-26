@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79906c5a-37a6-4d74-a276-7c095a6b8246" name="変更" comment="titleの包含判定を柔軟にした">
+    <list default="true" id="79906c5a-37a6-4d74-a276-7c095a6b8246" name="変更" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample-file/sample.md" beforeDir="false" afterPath="$PROJECT_DIR$/sample-file/sample.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ConfigLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ConfigLoader.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/SlackBlockConverter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/SlackBlockConverter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -375,7 +374,23 @@
       <option name="project" value="LOCAL" />
       <updated>1724481339007</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="排除する項目を設定できる様にした">
+      <option name="closed" value="true" />
+      <created>1724482608363</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1724482608363</updated>
+    </task>
+    <task id="LOCAL-00028" summary="update">
+      <option name="closed" value="true" />
+      <created>1724483913992</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1724483913992</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -397,7 +412,9 @@
     <MESSAGE value="fix" />
     <MESSAGE value="formatを設定できる様にした" />
     <MESSAGE value="titleの包含判定を柔軟にした" />
-    <option name="LAST_COMMIT_MESSAGE" value="titleの包含判定を柔軟にした" />
+    <MESSAGE value="排除する項目を設定できる様にした" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

@@ -1,8 +1,12 @@
 package org.example
 
-fun main() {
-    ConfigLoader.loadYml("application.yml")
-    val filePath = System.getenv("MARKDOWN_FILE_PATH")
-    val service = MarkdownToSlackService()
-    service.postToSlack(filePath)
+fun main(args: Array<String>) {
+    ConfigLoader.loadYml("config.yml")
+    val filePath = if (args.isNotEmpty()) args[0] else null
+    if (filePath != null) {
+        val service = MarkdownToSlackService()
+        service.postToSlack(filePath)
+    }else {
+        println("Please specify the file path.")
+    }
 }
